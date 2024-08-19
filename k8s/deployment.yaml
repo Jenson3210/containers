@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app-deployment
+  namespace: default
+  labels:
+    app: demo-app
+spec:
+  # replicas/selector -> There should be only 1 instance running at a time with the same label (on the pod).
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-app
+  # template -> Each pod should have the following details
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+        # describes the application container
+        - name: name-for-container
+          # If we use latest, it will try to pull the latest image from the registry.
+          # As we do only have a local image, we need to specify the exact version, in order not to have a ImagePullBackOff error.
+          # It is not recommended to use latest in production.
+          image: demo-app:0.0.1
+          ports:
+            # We want to expose the port 8080 of the container to the "outside" world
+            - containerPort: 8080
+              name: http
