@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.2'
     id 'io.spring.dependency-management' version '1.1.6'
+    id 'com.google.cloud.tools.jib' version '3.4.3'
 }
 
 group = 'com.sample'
@@ -33,4 +34,24 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+// Jib configuration
+jib {
+    // Start from a base image
+    from {
+        image = 'eclipse-temurin:21'
+    }
+    // Set the image to build
+    to {
+        image = 'demo-app'
+        tags = ['latest', '0.0.1']
+    }
+    // Set some settings for the image
+    container {
+        // Set the creation time to the current time so that RHACS can pass the 6 month rule
+        creationTime = 'USE_CURRENT_TIMESTAMP'
+        // Set the user to 1000 so that the image runs as a non-root user for RHACS
+        user = 1000
+    }
 }
