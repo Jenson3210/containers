@@ -38,15 +38,6 @@ tasks.named('test') {
 
 // Jib configuration
 jib {
-    // Start from a base image
-    from {
-        image = 'eclipse-temurin:21'
-    }
-    // Set the image to build
-    to {
-        image = 'demo-app'
-        tags = ['latest', '0.0.1']
-    }
     // Set some settings for the image
     container {
         // Set the creation time to the current time so that RHACS can pass the 6 month rule

@@ -1,0 +1,16 @@
+apiVersion: skaffold/v4beta2
+kind: Config
+metadata:
+  name: containers-course
+build:
+  artifacts:
+    # Set the image to build
+  - image: demo-app
+    jib:
+      # Start from a base image
+      fromImage: eclipse-temurin:21
+
+manifests:
+  rawYaml:
+  - ./k8s/deployment.yaml
+  - ./k8s/service.yaml
