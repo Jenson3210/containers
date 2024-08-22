@@ -11,6 +11,6 @@ build:
       fromImage: eclipse-temurin:21
 
 manifests:
-  rawYaml:
-  - ./k8s/deployment.yaml
-  - ./k8s/service.yaml
+  kustomize:
+    paths:
+    - ./k8s/dev
