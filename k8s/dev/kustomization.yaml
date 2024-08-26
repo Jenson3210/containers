@@ -7,3 +7,6 @@ configMapGenerator:
   - envs:
       - environment.properties
     name: svc-environment
+
+components:
+  - ../components/topology-spread/low
