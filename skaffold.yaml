@@ -14,3 +14,10 @@ manifests:
   kustomize:
     paths:
     - ./k8s/dev
+
+profiles:
+  - name: prod
+    manifests:
+      kustomize:
+        paths:
+        - ./k8s/prod
