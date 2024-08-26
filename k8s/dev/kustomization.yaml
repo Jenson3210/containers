@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ./../base
 
-images:
-  - name: demo-app
-    newTag: debug
+configMapGenerator:
+  - envs:
+      - environment.properties
+    name: svc-environment

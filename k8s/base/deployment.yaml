@@ -28,3 +28,6 @@ spec:
             # We want to expose the port 8080 of the container to the "outside" world
             - containerPort: 8080
               name: http
+          envFrom:
+            - configMapRef:
+                name: svc-environment
