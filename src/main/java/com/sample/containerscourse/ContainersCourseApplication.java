@@ -10,4 +10,11 @@ public class ContainersCourseApplication {
         SpringApplication.run(ContainersCourseApplication.class, args);
     }
 
+    private boolean find(String s, Boolean completeMatch) {
+        if (completeMatch) {
+            return text.equals(s);
+        }
+        return text.contains(s);
+    }
+
 }
